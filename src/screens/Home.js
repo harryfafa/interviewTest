@@ -12,7 +12,7 @@ import {
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 
-function App() {
+function Home() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
@@ -42,4 +42,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Home;
