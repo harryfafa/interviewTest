@@ -6,3 +6,9 @@ export function getProfitLossRate() {
         isNegative: rounded < 0
     };
 }
+
+export function getFiatValue(amount, symbol, fiatRates) {
+  const rate = fiatRates.find(r => r.symbol === symbol);
+  const fiatRate = rate?.fiat_rate || 0;
+  return amount * fiatRate;
+}

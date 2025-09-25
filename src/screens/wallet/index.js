@@ -1,24 +1,20 @@
-
 import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import {
     StyleSheet,
     View,
     TouchableOpacity,
     Image,
-    LayoutAnimation,
     Platform,
     UIManager,
     Animated,
-    ScrollView,
     FlatList,
-    Button,
-    NativeModules, NativeEventEmitter
+    NativeModules,
 } from 'react-native';
 import { Text } from '@react-navigation/elements';
 import ManageModal from './components/ManageModal';
 import SearchBar from './components/SearchBar';
 import { useAppContext } from '../../context/AppContext';
-import { getProfitLossRate } from './utils';
+import { getProfitLossRate, getFiatValue } from './utils';
 import cryptoMockData from '../../assets/mockdata/currency.json';
 
 if (Platform.OS === 'android') {
@@ -29,29 +25,13 @@ if (Platform.OS === 'android') {
 const { SettingsModule } = NativeModules;
 
 const menu = [
-    {
-        icon: require('../../assets/images/wallet/buy.png'),
-        label: 'Buy',
-    },
-    {
-        icon: require('../../assets/images/wallet/send.png'),
-        label: 'Send',
-    },
-    {
-        icon: require('../../assets/images/wallet/receive.png'),
-        label: 'Receive',
-    },
-    {
-        icon: require('../../assets/images/wallet/earn.png'),
-        label: 'Earn',
-    },
-]
+    { icon: require('../../assets/images/wallet/buy.png'), label: 'Buy' },
+    { icon: require('../../assets/images/wallet/send.png'), label: 'Send' },
+    { icon: require('../../assets/images/wallet/receive.png'), label: 'Receive' },
+    { icon: require('../../assets/images/wallet/earn.png'), label: 'Earn' },
+];
 
-const assetType = [
-    'Crypto',
-    'Earn',
-    'NFTs',
-]
+const assetType = ['Crypto', 'Earn', 'NFTs'];
 
 export default function Wallet({ navigation }) {
     useLayoutEffect(() => {
@@ -81,17 +61,16 @@ export default function Wallet({ navigation }) {
         });
     }, [navigation]);
 
-    const { state, dispatch } = useAppContext();
+    const { state } = useAppContext();
     const { currency } = state;
     const [mainnetsExpand, setMainnetsExpand] = useState(true);
     const animatedHeight = useRef(new Animated.Value(60)).current;
     const [seletedAssetType, setSelectedAssetType] = useState('Crypto');
     const [manageModalVisible, setManageModalVisible] = useState(false);
-    const [cryptoData, setCryptoData] = useState(new Array());
-    const [fiatRate, setFiatRate] = useState(new Array());
+    const [cryptoData, setCryptoData] = useState([]);
+    const [fiatRate, setFiatRate] = useState([]);
 
     useEffect(() => {
-        console.log('cryptoMockData', cryptoMockData.data)
         setCryptoData(cryptoMockData.data);
     }, []);
 
@@ -110,20 +89,17 @@ export default function Wallet({ navigation }) {
         setFiatRate(fiatRateData);
     }, [currency]);
 
-
     const toggleExpand = () => {
         if (mainnetsExpand) {
-            // 收合
             Animated.timing(animatedHeight, {
                 toValue: 0,
                 duration: 200,
-                useNativeDriver: false, // 因為要改 height，不能用 true
+                useNativeDriver: false,
             }).start(() => setMainnetsExpand(false));
         } else {
-            // 展開
             setMainnetsExpand(true);
             Animated.timing(animatedHeight, {
-                toValue: 60, // 設定展開後的高度，依照實際 UI 調整
+                toValue: 60,
                 duration: 200,
                 useNativeDriver: false,
             }).start();
@@ -133,44 +109,38 @@ export default function Wallet({ navigation }) {
     const renderCryptoItem = (item) => {
         const data = item.item;
         const profitLossRate = getProfitLossRate();
-        let _fiatRate = fiatRate.find(rate => rate.symbol === data.symbol);
-        _fiatRate = _fiatRate.fiat_rate || 0;
-        const fiatValut = data.amount * _fiatRate;
+        const fiatValue = getFiatValue(data.amount, data.symbol, fiatRate);
         return (
-            <View style={{
-                flexDirection: 'row',
-                width: '100%',
-                height: 60,
-                alignItems: 'center',
-                backgroundColor: '#eaeff4',
-                borderRadius: 12,
-                padding: 8,
-                marginBottom: 10
-            }}>
+            <View style={styles.cryptoItem}>
                 <Image
                     source={require('../../assets/images/wallet/crypto.png')}
-                    style={{ width: 40, height: 40 }}
+                    style={styles.cryptoIcon}
                 />
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginLeft: 10 }}>
-                    <View style={{ justifyContent: 'space-evenly', height: '100%' }}>
-                        <Text style={{ color: 'black', fontWeight: '700', justifyContent: 'space-evenly', textTransform: 'capitalize' }} numberOfLines={1}>{data.name}</Text>
-                        <Text style={{ color: profitLossRate.value !== 0 ? profitLossRate.isNegative ? 'red' : 'green' : 'black', fontSize: 12 }}>
-                            <Text style={{ color: profitLossRate.value !== 0 ? profitLossRate.isNegative ? 'red' : 'green' : 'black', fontWeight: 'bold' }}>
+                <View style={styles.cryptoItemContent}>
+                    <View style={styles.cryptoLeftBlock}>
+                        <Text style={styles.cryptoName} numberOfLines={1}>{data.name}</Text>
+                        <Text style={{
+                            color: profitLossRate.value !== 0 ? profitLossRate.isNegative ? 'red' : 'green' : 'black',
+                            fontSize: 12
+                        }}>
+                            <Text style={{
+                                color: profitLossRate.value !== 0 ? profitLossRate.isNegative ? 'red' : 'green' : 'black',
+                                fontWeight: 'bold'
+                            }}>
                                 {profitLossRate.isNegative ? '- ' : ''}
                             </Text>
                             {profitLossRate.value} %
                         </Text>
                     </View>
 
-                    <View style={{ alignItems: 'flex-end', justifyContent: 'space-evenly', height: '100%' }}>
-                        <Text style={{ color: 'black', fontWeight: '700' }}>$ {fiatValut}</Text>
-                        <Text style={{ color: 'gray', fontSize: 12 }}>{data.amount} {data.symbol}</Text>
+                    <View style={styles.cryptoRightBlock}>
+                        <Text style={styles.cryptoValue}>$ {fiatValue}</Text>
+                        <Text style={styles.cryptoAmount}>{data.amount} {data.symbol}</Text>
                     </View>
                 </View>
             </View>
-
-        )
-    }
+        );
+    };
 
     const aboveListUI = () => {
         return <>
@@ -180,14 +150,7 @@ export default function Wallet({ navigation }) {
                     style={styles.Icon_mainnetsArrow}
                     source={mainnetsExpand ? require('../../assets/images/wallet/down.png') : require('../../assets/images/wallet/up.png')} />
             </TouchableOpacity>
-            <Animated.View
-                style={{
-                    overflow: 'hidden',
-                    height: animatedHeight,
-                    width: '100%',
-                    alignItems: 'center',
-                }}
-            >
+            <Animated.View style={[styles.mainnetsExpandBox, { height: animatedHeight }]}>
                 {mainnetsExpand && (
                     <>
                         <Image
@@ -225,17 +188,15 @@ export default function Wallet({ navigation }) {
                     </TouchableOpacity>
                 ))}
             </View>
-            <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', marginTop: 20, marginBottom: 10 }}>
-                <Text style={{ color: 'black', fontWeight: '700' }}>
-                    Your Assets
-                </Text>
-                <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} onPress={() => setManageModalVisible(true)}>
-                    <Text style={{ lineHeight: 20, color: '#159BFA' }}>Manage</Text>
-                    <Image source={require('../../assets/images/wallet/manage.png')} style={{ width: 20, height: 20, tintColor: '#159BFA' }} />
+            <View style={styles.assetsHeader}>
+                <Text style={styles.assetsHeaderTitle}>Your Assets</Text>
+                <TouchableOpacity style={styles.manageButton} onPress={() => setManageModalVisible(true)}>
+                    <Text style={styles.manageText}>Manage</Text>
+                    <Image source={require('../../assets/images/wallet/manage.png')} style={styles.manageIcon} />
                 </TouchableOpacity>
             </View>
         </>
-    }
+    };
 
     return (
         <>
@@ -253,7 +214,7 @@ export default function Wallet({ navigation }) {
                     ListHeaderComponent={aboveListUI}
                     ListHeaderComponentStyle={{ alignItems: 'center' }}
                 />
-                <View style={{ width: '100%', paddingTop: 10 }}>
+                <View style={styles.searchBarContainer}>
                     <SearchBar />
                 </View>
             </View>
@@ -290,16 +251,11 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         tintColor: 'gray',
     },
-    expandContent: {
-        width: '100%',
-        marginTop: 20,
-        alignItems: 'center',
-    },
     Icon_eye: {
         width: 20,
         height: 20,
         tintColor: 'gray',
-        marginTop: 20
+        marginTop: 20,
     },
     grayText: {
         color: 'gray',
@@ -341,5 +297,81 @@ const styles = StyleSheet.create({
     assetTypeText: {
         fontSize: 16,
         fontWeight: '700',
+    },
+    cryptoItem: {
+        flexDirection: 'row',
+        width: '100%',
+        height: 60,
+        alignItems: 'center',
+        backgroundColor: '#eaeff4',
+        borderRadius: 12,
+        padding: 8,
+        marginBottom: 10,
+    },
+    cryptoIcon: {
+        width: 40,
+        height: 40,
+    },
+    cryptoItemContent: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginLeft: 10,
+    },
+    cryptoLeftBlock: {
+        justifyContent: 'space-evenly',
+        height: '100%',
+    },
+    cryptoName: {
+        color: 'black',
+        fontWeight: '700',
+        textTransform: 'capitalize',
+    },
+    cryptoRightBlock: {
+        alignItems: 'flex-end',
+        justifyContent: 'space-evenly',
+        height: '100%',
+    },
+    cryptoValue: {
+        color: 'black',
+        fontWeight: '700',
+    },
+    cryptoAmount: {
+        color: 'gray',
+        fontSize: 12,
+    },
+    mainnetsExpandBox: {
+        overflow: 'hidden',
+        width: '100%',
+        alignItems: 'center',
+    },
+    assetsHeader: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20,
+        marginBottom: 10,
+    },
+    assetsHeaderTitle: {
+        color: 'black',
+        fontWeight: '700',
+    },
+    manageButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    manageText: {
+        lineHeight: 20,
+        color: '#159BFA',
+    },
+    manageIcon: {
+        width: 20,
+        height: 20,
+        tintColor: '#159BFA',
+    },
+    searchBarContainer: {
+        width: '100%',
+        paddingTop: 10,
     },
 });
