@@ -7,6 +7,7 @@ class NativeSettingsView: UIView {
   
   private let avatarImageView = UIImageView()
   private let walletLabel = UILabel()
+  private let accountLabel = UILabel()   // 👈 新增 Account 標題
   private let currencyLabel = UILabel()
   private let displayCurrencyRow = UIControl()
   
@@ -37,6 +38,13 @@ class NativeSettingsView: UIView {
     walletLabel.textColor = .black
     walletLabel.font = UIFont.boldSystemFont(ofSize: 18)
     self.addSubview(walletLabel)
+    
+    // Account Label 👇
+    accountLabel.translatesAutoresizingMaskIntoConstraints = false
+    accountLabel.text = "Account"
+    accountLabel.textColor = .black
+    accountLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+    self.addSubview(accountLabel)
     
     // Display Currency Row
     displayCurrencyRow.backgroundColor = UIColor(hex: "#CDEAFE")
@@ -73,8 +81,12 @@ class NativeSettingsView: UIView {
       walletLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 12),
       walletLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
       
+      // Account Label
+      accountLabel.topAnchor.constraint(equalTo: walletLabel.bottomAnchor, constant: 32),
+      accountLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+      
       // Display Currency Row
-      displayCurrencyRow.topAnchor.constraint(equalTo: walletLabel.bottomAnchor, constant: 40),
+      displayCurrencyRow.topAnchor.constraint(equalTo: accountLabel.bottomAnchor, constant: 8),
       displayCurrencyRow.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
       displayCurrencyRow.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
       displayCurrencyRow.heightAnchor.constraint(equalToConstant: 50),
