@@ -11,20 +11,22 @@ import {
     Animated,
     ScrollView,
     FlatList,
-    Button
+    Button,
+    NativeModules, NativeEventEmitter
 } from 'react-native';
 import { Text } from '@react-navigation/elements';
 import ManageModal from './components/ManageModal';
 import SearchBar from './components/SearchBar';
 import { useAppContext } from '../../context/AppContext';
 import { getProfitLossRate } from './utils';
-
 import cryptoMockData from '../../assets/mockdata/currency.json';
 
 if (Platform.OS === 'android') {
     UIManager.setLayoutAnimationEnabledExperimental &&
         UIManager.setLayoutAnimationEnabledExperimental(true);
 }
+
+const { SettingsModule } = NativeModules;
 
 const menu = [
     {
@@ -68,7 +70,7 @@ export default function Wallet({ navigation }) {
                             style={styles.headerIcons}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => alert('Settings')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
                         <Image
                             source={require('../../assets/images/wallet/settings.png')}
                             style={styles.headerIcons}
@@ -79,7 +81,8 @@ export default function Wallet({ navigation }) {
         });
     }, [navigation]);
 
-    const { currency, setCurrency } = useAppContext();
+    const { state, dispatch } = useAppContext();
+    const { currency } = state;
     const [mainnetsExpand, setMainnetsExpand] = useState(true);
     const animatedHeight = useRef(new Animated.Value(60)).current;
     const [seletedAssetType, setSelectedAssetType] = useState('Crypto');
@@ -104,9 +107,9 @@ export default function Wallet({ navigation }) {
                 break;
         }
         fiatRateData = fiatRateData.data || [];
-        console.log('fiatRateData', fiatRateData)
         setFiatRate(fiatRateData);
     }, [currency]);
+
 
     const toggleExpand = () => {
         if (mainnetsExpand) {

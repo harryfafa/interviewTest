@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#F5F6F7"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <!-- 說明 -->
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select your preferred display currency. Your display currency is used to provide a fiat equivalence for your crypto balances"
+        android:textSize="14sp"
+        android:textColor="#333333"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="12dp" />
+
+    <!-- 貨幣清單 -->
+    <ListView
+        android:id="@+id/currencyList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="#DDDDDD"
+        android:dividerHeight="1dp"
+        android:choiceMode="singleChoice" />
+
+    <!-- 確認按鈕 -->
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm"
+        android:textColor="#FFFFFF"
+        android:background="#159BFA"
+        android:padding="16dp"
+        android:layout_margin="16dp" />
+</LinearLayout>
