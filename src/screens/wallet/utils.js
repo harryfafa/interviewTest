@@ -1,14 +1,14 @@
 export function getProfitLossRate() {
-    const num = Math.random() * 20 - 10;   // -10 ~ 10
-    const rounded = Math.round(num * 100) / 100; // 四捨五入到小數點後兩位
+    const num = Math.random() * 20 - 10;
     return {
-        value: Math.abs(rounded),
-        isNegative: rounded < 0
+        value: Math.abs(num.toFixed(2)),
+        isNegative: num < 0,
+        color: num === 0 ? 'black' : num < 0 ? 'red' : 'green',
     };
 }
 
 export function getFiatValue(amount, symbol, fiatRates) {
-  const rate = fiatRates.find(r => r.symbol === symbol);
-  const fiatRate = rate?.fiat_rate || 0;
-  return amount * fiatRate;
+    const rate = fiatRates.find(r => r.symbol === symbol);
+    const fiatRate = rate?.fiat_rate || 0;
+    return amount * fiatRate;
 }
