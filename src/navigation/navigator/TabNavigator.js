@@ -41,9 +41,18 @@ export default function RootTabs() {
                         statusBarHeight,
                         isLandscape
                     );
-                    console.log('Header Height:', headerHeight);
                     return {
                         tabBarShowLabel: false,
+                        tabBarStyle: {
+                            backgroundColor: '#F5F6F7',
+                            elevation: 0,
+                            shadowOpacity: 0,
+                            borderTopWidth: 0,
+                        },
+                        headerStyle: {
+                            backgroundColor: '#F5F6F7',
+                            elevation: 0,
+                        },
                         headerTitle: () => null,
                         headerLeft: () => (
                             <TouchableOpacity
@@ -86,7 +95,6 @@ export default function RootTabs() {
                                     justifyContent: 'center',
                                     alignItems: 'center',
                                 }}
-                                activeOpacity={0.7}
                             >
                                 {props.children}
                             </Pressable>
