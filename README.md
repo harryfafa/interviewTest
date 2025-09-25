@@ -1,35 +1,33 @@
 # CryptoDemo
 
-A React Native demo project with native Android (Kotlin) and iOS (Swift) components, showcasing wallet UI and currency selection.
+This project was developed according to the assessment requirements,  
+with reference to online resources and provided screenshots.  
+It demonstrates a simple wallet-style app with the following stack:
+
+- **Navigation**: React Navigation  
+- **State Management**: React Context  
+- **Testing**: Jest for unit testing common logic functions  
 
 ---
 
-## Environment
+## Prerequisites
 
-- **Node.js**: >= 20  
-- **React Native**: 0.81.4  
-- **React**: 19.1.0  
+Before running the project, make sure your environment has:
 
-### Android
-- **Gradle**: 8.14.3  
-- **Android Gradle Plugin**: managed by React Native CLI  
-- **Build Tools**: 36.0.0  
-- **compileSdkVersion**: 36  
-- **targetSdkVersion**: 36  
-- **minSdkVersion**: 24  
-- **NDK**: 27.1.12297006  
-- **Kotlin**: 2.1.20  
-- **JDK**: 17 or 21 (tested with JDK 17)
+- **Node.js**: 20 LTS  
+- **Android**:  
+  - JDK 17  
+  - Android Studio with **SDK 36** installed  
+- **iOS**:  
+  - macOS Ventura 13+  
+  - Xcode 15+  
+  - CocoaPods >= 1.15  
 
-### iOS
-- **macOS**: Ventura 13+ (Apple Silicon or Intel)  
-- **Xcode**: 15+  
-- **iOS Deployment Target**: 13.4  
-- **CocoaPods**: >= 1.15  
+> Once these are set up, no extra configuration is needed. Just install dependencies and run.
 
 ---
 
-## Installation
+## Getting Started
 
 Clone the repo and install dependencies:
 
@@ -37,3 +35,16 @@ Clone the repo and install dependencies:
 git clone <your-repo-url>
 cd CryptoDemo
 npm install
+```
+## Run on iOS
+```
+cd ios
+pod install
+cd ..
+npm run ios
+```
+
+## Run on Android
+```
+npm run Android
+```
