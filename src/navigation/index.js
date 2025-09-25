@@ -1,3 +1,5 @@
+
+import { View } from 'react-native';
 import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TabNavigator from './navigator/TabNavigator';
@@ -10,7 +12,8 @@ const RootStack = createNativeStackNavigator({
         headerStyle: {
             backgroundColor: '#F5F6F7',
         },
-        headerShadowVisible: false
+        headerShadowVisible: false,
+        headerBackButtonDisplayMode: 'minimal',
     },
     screens: {
         MainTabs: {

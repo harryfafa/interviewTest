@@ -10,7 +10,17 @@
 		0C80B921A6F3F58F76C31292 /* libPods-CryptoDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-CryptoDemo.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
+		7C8B7F4DFA361F5F3AFB582B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		ED272FD72E859A6200F2CE75 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED272FD52E859A6200F2CE75 /* Utils.swift */; };
+		ED272FD82E859A6200F2CE75 /* NativeSettingsViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED272FD32E859A6200F2CE75 /* NativeSettingsViewManager.m */; };
+		ED272FD92E859A6200F2CE75 /* NativeSettingsViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED272FD42E859A6200F2CE75 /* NativeSettingsViewManager.swift */; };
+		ED272FDA2E859A6200F2CE75 /* NativeDisplayCurrencyViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED272FD12E859A6200F2CE75 /* NativeDisplayCurrencyViewManager.swift */; };
+		ED272FDB2E859A6200F2CE75 /* NativeDisplayCurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED272FCF2E859A6200F2CE75 /* NativeDisplayCurrencyView.swift */; };
+		ED272FDC2E859A6200F2CE75 /* NativeDisplayCurrencyViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED272FD02E859A6200F2CE75 /* NativeDisplayCurrencyViewManager.m */; };
+		ED272FDD2E859A6200F2CE75 /* NativeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED272FD22E859A6200F2CE75 /* NativeSettingsView.swift */; };
+		ED272FE82E859D4900F2CE75 /* SettingsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = ED272FE62E859D4900F2CE75 /* SettingsModule.m */; };
+		ED272FE92E859D4900F2CE75 /* SettingsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED272FE72E859D4900F2CE75 /* SettingsModule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +33,15 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-CryptoDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CryptoDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = CryptoDemo/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = CryptoDemo/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ED272FCF2E859A6200F2CE75 /* NativeDisplayCurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeDisplayCurrencyView.swift; sourceTree = "<group>"; };
+		ED272FD02E859A6200F2CE75 /* NativeDisplayCurrencyViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeDisplayCurrencyViewManager.m; sourceTree = "<group>"; };
+		ED272FD12E859A6200F2CE75 /* NativeDisplayCurrencyViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeDisplayCurrencyViewManager.swift; sourceTree = "<group>"; };
+		ED272FD22E859A6200F2CE75 /* NativeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSettingsView.swift; sourceTree = "<group>"; };
+		ED272FD32E859A6200F2CE75 /* NativeSettingsViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeSettingsViewManager.m; sourceTree = "<group>"; };
+		ED272FD42E859A6200F2CE75 /* NativeSettingsViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSettingsViewManager.swift; sourceTree = "<group>"; };
+		ED272FD52E859A6200F2CE75 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		ED272FE62E859D4900F2CE75 /* SettingsModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsModule.m; sourceTree = "<group>"; };
+		ED272FE72E859D4900F2CE75 /* SettingsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModule.swift; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -41,6 +60,7 @@
 		13B07FAE1A68108700A75B9A /* CryptoDemo */ = {
 			isa = PBXGroup;
 			children = (
+				ED272FD62E859A6200F2CE75 /* NativeModules */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				761780EC2CA45674006654EE /* AppDelegate.swift */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -95,6 +115,22 @@
 				5709B34CF0A7D63546082F79 /* Pods-CryptoDemo.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		ED272FD62E859A6200F2CE75 /* NativeModules */ = {
+			isa = PBXGroup;
+			children = (
+				ED272FE62E859D4900F2CE75 /* SettingsModule.m */,
+				ED272FE72E859D4900F2CE75 /* SettingsModule.swift */,
+				ED272FCF2E859A6200F2CE75 /* NativeDisplayCurrencyView.swift */,
+				ED272FD02E859A6200F2CE75 /* NativeDisplayCurrencyViewManager.m */,
+				ED272FD12E859A6200F2CE75 /* NativeDisplayCurrencyViewManager.swift */,
+				ED272FD22E859A6200F2CE75 /* NativeSettingsView.swift */,
+				ED272FD32E859A6200F2CE75 /* NativeSettingsViewManager.m */,
+				ED272FD42E859A6200F2CE75 /* NativeSettingsViewManager.swift */,
+				ED272FD52E859A6200F2CE75 /* Utils.swift */,
+			);
+			path = NativeModules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +195,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				7C8B7F4DFA361F5F3AFB582B /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,9 +226,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CryptoDemo/Pods-CryptoDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CryptoDemo/Pods-CryptoDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -228,9 +269,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CryptoDemo/Pods-CryptoDemo-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CryptoDemo/Pods-CryptoDemo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -244,6 +289,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED272FD72E859A6200F2CE75 /* Utils.swift in Sources */,
+				ED272FD82E859A6200F2CE75 /* NativeSettingsViewManager.m in Sources */,
+				ED272FD92E859A6200F2CE75 /* NativeSettingsViewManager.swift in Sources */,
+				ED272FDA2E859A6200F2CE75 /* NativeDisplayCurrencyViewManager.swift in Sources */,
+				ED272FDB2E859A6200F2CE75 /* NativeDisplayCurrencyView.swift in Sources */,
+				ED272FDC2E859A6200F2CE75 /* NativeDisplayCurrencyViewManager.m in Sources */,
+				ED272FE82E859D4900F2CE75 /* SettingsModule.m in Sources */,
+				ED272FE92E859D4900F2CE75 /* SettingsModule.swift in Sources */,
+				ED272FDD2E859A6200F2CE75 /* NativeSettingsView.swift in Sources */,
 				761780ED2CA45674006654EE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,7 +428,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -439,7 +496,9 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

@@ -52,6 +52,7 @@ export default function RootTabs() {
                         headerStyle: {
                             backgroundColor: '#F5F6F7',
                             elevation: 0,
+                            shadowColor: 'transparent', 
                         },
                         headerTitle: () => null,
                         headerLeft: () => (
