@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import {
     StyleSheet,
     View,
@@ -10,7 +10,8 @@ import {
     UIManager,
     Animated,
     ScrollView,
-    FlatList
+    FlatList,
+    Button
 } from 'react-native';
 import { Text } from '@react-navigation/elements';
 import ManageModal from './components/ManageModal';
@@ -50,9 +51,35 @@ const assetType = [
     'NFTs',
 ]
 
-export default function Wallet() {
-    const { currency, setCurrency } = useAppContext();
+export default function Wallet({ navigation }) {
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerRight: () => (
+                <View style={styles.headerRight}>
+                    <TouchableOpacity onPress={() => alert('Scan')}>
+                        <Image
+                            source={require('../../assets/images/wallet/scanner.png')}
+                            style={styles.headerIcons}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => alert('History')}>
+                        <Image
+                            source={require('../../assets/images/wallet/time.png')}
+                            style={styles.headerIcons}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => alert('Settings')}>
+                        <Image
+                            source={require('../../assets/images/wallet/settings.png')}
+                            style={styles.headerIcons}
+                        />
+                    </TouchableOpacity>
+                </View>
+            ),
+        });
+    }, [navigation]);
 
+    const { currency, setCurrency } = useAppContext();
     const [mainnetsExpand, setMainnetsExpand] = useState(true);
     const animatedHeight = useRef(new Animated.Value(60)).current;
     const [seletedAssetType, setSelectedAssetType] = useState('Crypto');
@@ -232,6 +259,16 @@ export default function Wallet() {
 }
 
 const styles = StyleSheet.create({
+    headerRight: {
+        flexDirection: 'row',
+        marginRight: 10,
+    },
+    headerIcons: {
+        width: 22,
+        height: 22,
+        tintColor: 'gray',
+        marginHorizontal: 8,
+    },
     container: {
         flex: 1,
         width: '90%',
